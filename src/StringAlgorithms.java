@@ -97,24 +97,27 @@ public class StringAlgorithms {
 
     }
 
+
+
     /*
-    print error if 's' not between 'a-m'
+    print error if 's' is not between 'a-m'
     s="aaaxbbbbyyhwawiwjjjwwm"
     error_printer(s) => "8/22"
     */
 
     public static String printerError(String s) {
-        // your code
-        char[] arr = s.toCharArray();
-        Arrays.sort(arr);
-        String str = String.valueOf(arr);
-        int ind = 0;
-        for (char ch='a'; ch <= 'm'; ch++) {
-            if (str.contains(ch + "")) {
-                ind = str.lastIndexOf(ch);
-            }
-        }
+//        char[] arr = s.toCharArray();
+//        Arrays.sort(arr);
+//        String str = String.valueOf(arr);
+//        int ind = -1;
+//        for (char ch='n'; ch <= 'z'; ch++) {
+//            if (str.contains(ch + "")) {
+//                ind = str.indexOf(ch);
+//                break;
+//            }
+//        }
+//        return ind >= 0 ? "" + str.substring(ind).length() + "/" + str.length() : "0/"+str.length();
 
-        return ind > 0 ? "" + str.substring(ind+1).length() + "/" + str.length() : "0/"+str.length();
+        return s.replaceAll("[a-m]", "").length() + "/" + s.length();
     }
 }
