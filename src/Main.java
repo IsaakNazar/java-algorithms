@@ -1,11 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        String s = StringAlgorithms.printerError("yuuyuytrtr");
+        String s = StringAlgorithms.printerError("yuuyuytrtraljefe");
 
-        int x = IntegerAlgorithms.squareDigits(9329);
+        long x = IntegerAlgorithms.findNextSquare(120);
 
-        boolean b = BooleanAlgorithms.getXO("xxXoOo");
-        System.out.println(s);
+        boolean b = BooleanAlgorithms.validatePin("123323");
+        System.out.println(x);
     }
 
 }

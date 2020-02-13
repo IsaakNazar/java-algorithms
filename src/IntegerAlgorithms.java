@@ -1,6 +1,4 @@
 import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.stream.Stream;
 
 public class IntegerAlgorithms {
 
@@ -36,5 +34,45 @@ public class IntegerAlgorithms {
             n /= 10;
         }
         return Integer.parseInt(result);
+    }
+
+    /*
+        1
+       3 5
+      7 9 11
+    13 15 17 19
+    rowSumOddNumbers(1); // 1
+    rowSumOddNumbers(2); // 3 + 5 = 8
+     */
+    public static int rowSumOddNumbers(int n) {
+//        int num = factorial(n) * 2 - 1;
+//        int res = 0;
+//        while(n > 0) {
+//            res += num;
+//            num = num - 2;
+//            n--;
+//        }
+//        return res;
+
+        return n * n * n;
+    }
+
+    public static int factorial(int n) {
+        int x = 0;
+        for (int i = 1; i <= n; i++) {
+            x += i;
+        }
+        return x;
+    }
+
+
+    /*
+    finds the next integral perfect square
+    findNextSquare(625) --> returns 676
+    findNextSquare(114) --> returns -1
+     */
+    public static long findNextSquare(long sq) {
+        double sqr = Math.sqrt(sq);
+        return sqr % 1 == 0 ? (long) Math.pow(sqr + 1, 2) : -1;
     }
 }
