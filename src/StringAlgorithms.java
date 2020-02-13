@@ -120,4 +120,36 @@ public class StringAlgorithms {
 
         return s.replaceAll("[a-m]", "").length() + "/" + s.length();
     }
+
+    /* remove all vowel occurrences from string */
+    public static String disemvowel(String str) {
+        return str.replaceAll("[aeiouAEIOU]", "");
+    }
+
+    /* capitalize */
+    public static String toCapitalizeCase(String phrase) {
+        if (phrase == null || phrase.equals("")) return null;
+//    String[] str = phrase.split(" ");
+//    String[] str2 = new String[str.length];
+//    for (int i = 0; i < str.length; i++) {
+//      str2[i] = str[i].substring(0, 1).toUpperCase() + str[i].substring(1);
+//    }
+//    return String.join(" ", str2);
+        char[] array = phrase.toCharArray();
+        for (int i = 0; i < array.length; i++) {
+            if (i == 0 || array[i-1] == ' ') {
+                array[i] = Character.toUpperCase(array[i]);
+            }
+        }
+        return new String(array);
+    }
+
+    /*
+    change all but the last four characters into '#'
+    */
+    public static String maskify(String str) {
+        if (str.length() < 5) return str;
+
+        return str.substring(0, str.length() - 4).replaceAll(".", "#") + str.substring(str.length() - 4);
+    }
 }

@@ -1,5 +1,22 @@
 public class BooleanAlgorithms {
 
+    /* a word with no repeating letters  return true*/
+    public static boolean  isIsogram(String str) {
+        if (str.length() == 0) return true;
+        String[] arr = str.toLowerCase().split("");
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[j].matches(arr[i])) {
+                    count++;
+                }
+            }
+        }
+
+        return count == str.length();
+
+    }
+
     /* You're a square! */
     public static boolean isSquare(int n) {
         return Math.sqrt(n) % 1 == 0;

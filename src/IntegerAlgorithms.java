@@ -1,6 +1,23 @@
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class IntegerAlgorithms {
+
+    /* sum of all the numbers between, including them too */
+    public static int GetSum(int a, int b) {
+        return IntStream.range(Math.min(a, b), Math.max(a, b) + 1)
+                .sum();
+    }
+
+    /* How many years does the town need to see its population greater or equal to numOfPopulationToOvercome = 1200 inhabitants? */
+    public static int nbYear(int currentPopulation, double percent, int inhabitants, int numOfPopulationToOvercome) {
+        int count = 0;
+        while (currentPopulation < numOfPopulationToOvercome) {
+            currentPopulation = currentPopulation + (int)(currentPopulation * percent/100) + inhabitants;
+            count++;
+        }
+        return count;
+    }
 
     /* return the length of the shortest word(s) */
 
