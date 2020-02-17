@@ -152,4 +152,22 @@ public class StringAlgorithms {
 
         return str.substring(0, str.length() - 4).replaceAll(".", "#") + str.substring(str.length() - 4);
     }
+
+
+    /*
+    return the sum of following series upto nth term(parameter).
+    Series: 1 + 1/4 + 1/7 + 1/10 + 1/13 + 1/16 +...
+    SeriesSum(5) => 1 + 1/4 + 1/7 + 1/10 + 1/13 = "1.57"
+     */
+
+    public static String seriesSum(int n) {
+        double x = 1;
+        double denom = 4;
+        while (n > 1) {
+            x += (1/denom);
+            denom += 3;
+            n--;
+        }
+        return x > 1 ? String.format("%.2f",Math.round(x * 100.0) / 100.0) : n + ".00";
+    }
 }

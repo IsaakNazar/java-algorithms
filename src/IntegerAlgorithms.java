@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class IntegerAlgorithms {
@@ -13,7 +14,7 @@ public class IntegerAlgorithms {
     public static int nbYear(int currentPopulation, double percent, int inhabitants, int numOfPopulationToOvercome) {
         int count = 0;
         while (currentPopulation < numOfPopulationToOvercome) {
-            currentPopulation = currentPopulation + (int)(currentPopulation * percent/100) + inhabitants;
+            currentPopulation = currentPopulation + (int) (currentPopulation * percent / 100) + inhabitants;
             count++;
         }
         return count;
@@ -91,5 +92,63 @@ public class IntegerAlgorithms {
     public static long findNextSquare(long sq) {
         double sqr = Math.sqrt(sq);
         return sqr % 1 == 0 ? (long) Math.pow(sqr + 1, 2) : -1;
+    }
+
+
+    /*Calculate how many years it will take to make `desired` money
+      Let P be the Principal = 1000.00
+      Let I be the Interest Rate = 0.05
+      Let T be the Tax Rate = 0.18
+      Let D be the Desired Sum = 1100.00
+
+      After 1st Year -->  P = 1041.00
+      After 2nd Year -->  P = 1083.86
+      After 3rd Year -->  P = 1128.30
+     */
+
+    public static int calculateYears(double principal, double interest, double tax, double desired) {
+        int numOfYears = 0;
+        while (desired > principal) {
+            principal += (principal * interest) - (principal * interest * tax);
+            numOfYears++;
+        }
+        return numOfYears;
+    }
+
+    /*
+    [0, 0, 0, 1] ==> 1
+    [0, 1, 0, 1] ==> 5
+    [1, 0, 0, 1] ==> 9
+     */
+    public static int ConvertBinaryArrayToInt(List<Integer> binary) {
+        int x = 0;
+
+        for (int i = binary.size() - 1; i >= 0; i--) {
+            if (binary.get(i) == 1) {
+                x += Math.pow(2, binary.size() - 1 - i);
+            }
+        }
+
+        return x;
+//        return binary.stream().reduce((a, b) -> a * 2 + b).get();
+
+    }
+
+
+
+    /*
+    1,9 -> 1,2,3,4,6,7,8,9 -> Result 8
+    4,17 -> 4,6,7,8,9,10,11,12,13,14,16,17 -> Result 12
+     */
+    public static int dontGiveMeFive(int start, int end) {
+        int count = 0;
+
+        while (start <= end) {
+            start++;
+            count += (start == 5) ? 0 : 1;
+
+            System.out.println(count);
+        }
+        return count;
     }
 }
