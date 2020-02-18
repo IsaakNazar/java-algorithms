@@ -1,6 +1,16 @@
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
-import java.util.stream.IntStream;
+
+class Fighter {
+    public String name;
+    public int health, damagePerAttack;
+
+    public Fighter(String name, int health, int damagePerAttack) {
+        this.name = name;
+        this.health = health;
+        this.damagePerAttack = damagePerAttack;
+    }
+}
 
 public class StringAlgorithms {
     public static String getMiddle(String word) {
@@ -23,8 +33,8 @@ public class StringAlgorithms {
     }
 
 
-/* have to return the highest and lowest number. */
-/* highAndLow("1 2 3 4 5 -3")  // return "5 -3" */
+    /* have to return the highest and lowest number. */
+    /* highAndLow("1 2 3 4 5 -3")  // return "5 -3" */
 
     public static String highAndLow(String numbers) {
 //        String[] arr = numbers.split(" ");
@@ -65,13 +75,14 @@ public class StringAlgorithms {
                 .replace("Z", "C");
     }
 
-    /*
+
+    /* *********************************
     return sorted string without duplicates
     a = "xyaabbbccccdefww"
     b = "xxxxyyyyabklmopq"
     longest(a, b) -> "abcdefklmopqwxy"
     */
-    public static String longest (String s1, String s2) {
+    public static String longest(String s1, String s2) {
 //        char[] charArr = (s1 + s2).toCharArray();
 //        Arrays.sort(charArr);
 //
@@ -87,7 +98,7 @@ public class StringAlgorithms {
 
         String str = s1 + s2, out = "";
 
-        for (char ch='a'; ch <= 'z'; ch++) {
+        for (char ch = 'a'; ch <= 'z'; ch++) {
             if (str.contains(ch + "")) {
                 out += ch;
                 str.lastIndexOf(ch);
@@ -99,7 +110,7 @@ public class StringAlgorithms {
 
 
 
-    /*
+    /* ********* ********* ********* *********
     print error if 's' is not between 'a-m'
     s="aaaxbbbbyyhwawiwjjjwwm"
     error_printer(s) => "8/22"
@@ -121,7 +132,8 @@ public class StringAlgorithms {
         return s.replaceAll("[a-m]", "").length() + "/" + s.length();
     }
 
-    /* remove all vowel occurrences from string */
+    /* ********* ********* ********* ********* ********* ********* ********* *********
+    remove all vowel occurrences from string */
     public static String disemvowel(String str) {
         return str.replaceAll("[aeiouAEIOU]", "");
     }
@@ -137,20 +149,21 @@ public class StringAlgorithms {
 //    return String.join(" ", str2);
         char[] array = phrase.toCharArray();
         for (int i = 0; i < array.length; i++) {
-            if (i == 0 || array[i-1] == ' ') {
+            if (i == 0 || array[i - 1] == ' ') {
                 array[i] = Character.toUpperCase(array[i]);
             }
         }
         return new String(array);
     }
 
-    /*
+    /* ********* ********* ********* ********* ********* ********* *********
     change all but the last four characters into '#'
     */
     public static String maskify(String str) {
         if (str.length() < 5) return str;
 
-        return str.substring(0, str.length() - 4).replaceAll(".", "#") + str.substring(str.length() - 4);
+        return str.substring(0, str.length() - 4).replaceAll(".", "#") +
+                str.substring(str.length() - 4);
     }
 
 
@@ -160,14 +173,45 @@ public class StringAlgorithms {
     SeriesSum(5) => 1 + 1/4 + 1/7 + 1/10 + 1/13 = "1.57"
      */
 
-    public static String seriesSum(int n) {
+    public static String SeriesSum(int n) {
         double x = 1;
         double denom = 4;
         while (n > 1) {
-            x += (1/denom);
+            x += (1 / denom);
             denom += 3;
             n--;
         }
-        return x > 1 ? String.format("%.2f",Math.round(x * 100.0) / 100.0) : n + ".00";
+        return x > 1 ? String.format("%.2f", Math.round(x * 100.0) / 100.0) : n + ".00";
     }
+
+
+    /* Declare winner */
+
+
+    public static String declareWinner(Fighter first, Fighter second, String firstAttacker) {
+        Fighter a = first, b = second;
+        if (firstAttacker.equals(second.name)) {
+            a = second;
+            b = first;
+        }
+        while (true) {
+            if ((b.health -= a.damagePerAttack) <= 0) return a.name; //a wins
+            if ((a.health -= b.damagePerAttack) <= 0) return b.name;  // b wins
+        }
+    }
+
+
+
+    /*
+    Given a list of numbers, determine whether the sum of its elements is odd or even.
+    odd_or_even([0])          ==  "even"
+    odd_or_even([0, 1, 4])    ==  "odd"
+    odd_or_even([0, -1, -5])  ==  "even"
+     */
+    public static String oddOrEven (int[] array) {
+       return Arrays.stream(array).sum() % 2 == 0 ? "Even" : "Odd";
+    }
+
 }
+
+

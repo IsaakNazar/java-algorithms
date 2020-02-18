@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -150,5 +151,36 @@ public class IntegerAlgorithms {
             System.out.println(count);
         }
         return count;
+    }
+
+    /*
+    [ [10,0],[3,5],[5,8] ]  returns 5
+    [ [3,0],[9,1],[4,10],[12,2],[6,1],[7,10] ] returns 17
+     */
+    public static int countPassengers(ArrayList<int[]> stops) {
+
+//        int sum = 0;
+//        for (int[] x : stops) {
+//            sum += x[0] - x[1];
+//        }
+//        return sum;
+
+        return stops.stream().mapToInt(x -> x[0] - x[1]).sum();
+    }
+
+
+    /*
+    Complete the method which accepts such an array, and returns that single different number.
+    [1, 1, 2] ==> 2
+    [17, 17, 3, 17, 17, 17, 17] ==> 3
+     */
+
+    static int stray(int[] numbers) {
+//        Arrays.sort(numbers);
+//        return numbers[1] == numbers[0] ? numbers[numbers.length-1] : numbers[0];
+
+        if (numbers[0] != numbers[1] && numbers[0] != numbers[2]) return numbers[0];
+        for (int i : numbers) if (i != numbers[0]) return i;
+        return 0;
     }
 }
