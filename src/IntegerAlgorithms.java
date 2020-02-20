@@ -84,6 +84,7 @@ public class IntegerAlgorithms {
         return x;
     }
 
+    /* ******* *********** ********** ************ *************** ************* *********/
 
     /*
     finds the next integral perfect square
@@ -95,6 +96,7 @@ public class IntegerAlgorithms {
         return sqr % 1 == 0 ? (long) Math.pow(sqr + 1, 2) : -1;
     }
 
+    /* ******* *********** ********** ************ *************** ************* *********/
 
     /*Calculate how many years it will take to make `desired` money
       Let P be the Principal = 1000.00
@@ -136,6 +138,8 @@ public class IntegerAlgorithms {
     }
 
 
+    /* ******* *********** ********** ************ *************** ************* *********/
+
 
     /*
     1,9 -> 1,2,3,4,6,7,8,9 -> Result 8
@@ -145,13 +149,27 @@ public class IntegerAlgorithms {
         int count = 0;
 
         while (start <= end) {
+            if (!hasFive(start)) {
+                count++;
+            }
             start++;
-            count += (start == 5) ? 0 : 1;
-
-            System.out.println(count);
         }
         return count;
     }
+
+    public static boolean hasFive(int number) {
+        while(number > 0)
+        {
+            if(number % 10 == 5){
+                return true;
+            } else {
+                number /= 10;
+            }
+        }
+        return false;
+    }
+
+    /* ******* *********** ********** ************ *************** ************* *********/
 
     /*
     [ [10,0],[3,5],[5,8] ]  returns 5
@@ -168,6 +186,7 @@ public class IntegerAlgorithms {
         return stops.stream().mapToInt(x -> x[0] - x[1]).sum();
     }
 
+    /* ******* *********** ********** ************ *************** ************* *********/
 
     /*
     Complete the method which accepts such an array, and returns that single different number.
@@ -183,4 +202,32 @@ public class IntegerAlgorithms {
         for (int i : numbers) if (i != numbers[0]) return i;
         return 0;
     }
+
+    /* ******* *********** ********** ************ *************** ************* *********/
+
+    /*
+    You are given two arrays a1 and a2 of strings. Each string is composed with letters from a to z.
+    Let x be any string in the first array and y be any string in the second array.
+
+    Find max(abs(length(x) − length(y)))
+     */
+    public static int mxdiflg(String[] a1, String[] a2) {
+        if (a1.length == 0 || a2.length == 0) return -1;
+        int res1 = Math.abs(findMinMax(a1)[0] - findMinMax(a2)[1]);
+        int res2 = Math.abs(findMinMax(a1)[1] - findMinMax(a2)[0]);
+        return Math.max(res1, res2);
+    }
+
+    public static int[] findMinMax(String[] a) {
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (String s : a) {
+            if (max < s.length()) max = s.length();
+            if (min > s.length()) min = s.length();
+        }
+        return new int[]{min, max};
+    }
+
+    /* ******* *********** ********** ************ *************** ************* *********/
+
 }
