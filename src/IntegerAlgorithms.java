@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -158,9 +159,8 @@ public class IntegerAlgorithms {
     }
 
     public static boolean hasFive(int number) {
-        while(number > 0)
-        {
-            if(number % 10 == 5){
+        while (number > 0) {
+            if (number % 10 == 5) {
                 return true;
             } else {
                 number /= 10;
@@ -203,6 +203,21 @@ public class IntegerAlgorithms {
         return 0;
     }
 
+
+    /*
+    MinMax.minMax(new int[]{1,2,3,4,5}) == {1,5}
+    MinMax.minMax(new int[]{2334454,5}) == {5, 2334454}
+    MinMax.minMax(new int[]{1}) == {1, 1}
+     */
+
+    public static int[] minMax(int[] arr) {
+        // Your awesome code here
+        IntSummaryStatistics summary = Arrays
+                .stream(arr)
+                .summaryStatistics();
+        return new int[]{summary.getMin(), summary.getMax()};
+    }
+
     /* ******* *********** ********** ************ *************** ************* *********/
 
     /*
@@ -229,5 +244,38 @@ public class IntegerAlgorithms {
     }
 
     /* ******* *********** ********** ************ *************** ************* *********/
+
+
+    /*
+    56789. Rotate left, you get 67895.
+    Keep the first digit in place and rotate left the other digits: 68957.
+    Keep the first two digits in place and rotate the other ones: 68579.
+    56789 -> 67895 -> 68957 -> 68579 -> 68597
+    and you must return the greatest: 68957.
+     */
+    public static long maxRot(long n) {
+//        long max = n;
+//        for (int i = 0; i < str.length()-1; i++) {
+//            String s = str.substring(i, i+1);
+//            str = str.replace(str.substring(i, i+1), "") + s;
+//            max = Math.max(max, Long.parseLong(str));
+//            System.out.println(str);
+//        }
+//
+//        return max;
+        String num = String.valueOf(n);
+
+        for (int i = 0; i < num.length() - 1; i++) {
+            num = num.substring(0, i) +
+                    num.substring(i + 1) +
+                    num.charAt(i);
+
+            if (Long.parseLong(num) > n) {
+                n = Long.parseLong(num);
+            }
+        }
+
+        return n;
+    }
 
 }

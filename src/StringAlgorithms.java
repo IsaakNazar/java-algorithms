@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
+import java.util.List;
 
 class Fighter {
     public String name;
@@ -211,6 +213,22 @@ public class StringAlgorithms {
     public static String oddOrEven (int[] array) {
        return Arrays.stream(array).sum() % 2 == 0 ? "Even" : "Odd";
     }
+
+
+    /*
+    number(Arrays.asList()) # => []
+    number(Arrays.asList("a", "b", "c")) // => ["1: a", "2: b", "3: c"]
+    */
+
+    public static List<String> number(List<String> lines) {
+
+        List<String> newList = new ArrayList<>();
+        for (int i = 0; i < lines.size(); i++) {
+            newList.add(i+1 + ": " + lines.get(i));
+        }
+        return newList;
+    }
+
 
 }
 
