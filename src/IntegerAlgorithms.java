@@ -278,4 +278,26 @@ public class IntegerAlgorithms {
         return n;
     }
 
+
+    /*
+    Write a function to calculate factorial for a given input.
+    If input is below 0 or above 12 throw an exception of type IllegalArgumentException
+     */
+    public static int factorialN(int n) {
+//        int acc = 1;
+//        if (n < 0 || n > 12) {
+//            throw new IllegalArgumentException("Factorial Exception");
+//        }
+//        if (n == 0) return 1;
+//        int i = 1;
+//        while (i <= n) {
+//            acc *= i;
+//            i++;
+//        }
+//        return acc;
+
+        if(n < 0 || n > 12) throw new IllegalArgumentException("Useless fuffery!");
+        return n <= 1 ? 1 : n * factorialN(n - 1);
+    }
+
 }
