@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Fighter {
     public String name;
@@ -227,6 +228,18 @@ public class StringAlgorithms {
             newList.add(i+1 + ": " + lines.get(i));
         }
         return newList;
+    }
+
+    /*
+    remove duplicates
+    Input:
+    'alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta'
+    Output:
+    'alpha beta gamma delta'
+     */
+
+    public static String removeDuplicateWords(String s){
+        return Arrays.stream(s.split(" ")).distinct().collect(Collectors.joining(" "));
     }
 
 

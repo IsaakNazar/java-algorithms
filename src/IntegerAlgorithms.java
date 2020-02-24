@@ -278,4 +278,33 @@ public class IntegerAlgorithms {
         return n;
     }
 
+
+    /* ********* ********* ********* *********
+    Find the number with the most digits.
+    If two numbers in the argument array have the same number of digits, return the first one in the array.
+     */
+
+    public static int findLongest(int[] numbers) {
+//        int max = 0;
+//        int res = 0;
+//        for (int i = 0; i < numbers.length; i++) {
+//            int abs = Math.abs(numbers[i]);
+//            if (String.valueOf(abs).length() > max) {
+//                max = String.valueOf(abs).length();
+//                res = numbers[i];
+//            }
+//
+//        }
+//        return res;
+
+        int index = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if (String.valueOf(Math.abs(numbers[i])).length() > String.valueOf(Math.abs(numbers[index])).length()) {
+                index = i;
+            }
+        }
+        return numbers[index];
+    }
+
+
 }
