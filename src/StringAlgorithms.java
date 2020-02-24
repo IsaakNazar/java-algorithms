@@ -243,6 +243,46 @@ public class StringAlgorithms {
     }
 
 
+    /*
+    addLetters("a", "b", "c") = "f"
+    addLetters("a", "b") = "c"
+    addLetters("z") = "z"
+     */
+
+    public static String addLetters(String... letters) {
+//        String s = "";
+//        if (letters.length == 0) return "z";
+//        for (char i = 'a'; i <= 'z'; i++) {
+//            s += i;
+//        }
+//
+//        char[] ch = s.toCharArray();
+//        int sum = 0;
+//        String theLetter = "";
+//        for (int i = 0; i < ch.length; i++) {
+//            for (String letter : letters) {
+//                if (String.valueOf(ch[i]).equals(letter)) {
+//                    sum += i+1;
+//                }
+//            }
+//            theLetter = String.valueOf(ch[Math.abs((sum-1)%26)]);
+//        }
+//        return theLetter;
+
+        if(letters.length == 0){
+            return "z";
+        }
+        int sum = 0;
+
+        for(int i = 0;i < letters.length; i++){
+            sum += letters[i].charAt(0)%96;
+        }
+        if(sum > 26) sum = sum%26;
+        if(sum < 1) sum = 26;
+        return String.valueOf((char) (sum+96));
+    }
+
+
 }
 
 
