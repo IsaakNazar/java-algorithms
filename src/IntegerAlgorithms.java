@@ -328,5 +328,17 @@ public class IntegerAlgorithms {
         return numbers[index];
     }
 
+    /*
+    Given a list of digits, return the smallest number that could be formed from these digits,
+    using the digits only once (ignore duplicates).
+    minValue({5, 7, 5, 9, 7})  ==> return (579)
+     */
+    public static int minValue(int[] values){
+
+        return IntStream.of(values).distinct().sorted().reduce('0', Integer::sum);
+
+    }
+
+
 
 }
