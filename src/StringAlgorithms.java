@@ -283,6 +283,20 @@ public class StringAlgorithms {
     }
 
 
+    /*
+    a = ["az", "toto", "picaro", "zone", "kiwi"] -->
+    [
+        ["az", "toto picaro zone kiwi"],
+        ["az toto", "picaro zone kiwi"],
+        ["az toto picaro", "zone kiwi"],
+        ["az toto picaro zone", "kiwi"]
+    ]
+     */
+//    public static String[][] partlist(String[] arr) {
+//        // your code
+//    }
+
+
 }
 
 

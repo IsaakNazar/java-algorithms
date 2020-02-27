@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class IntegerAlgorithms {
 
@@ -328,17 +330,26 @@ public class IntegerAlgorithms {
         return numbers[index];
     }
 
+
     /*
     Given a list of digits, return the smallest number that could be formed from these digits,
     using the digits only once (ignore duplicates).
-    minValue({5, 7, 5, 9, 7})  ==> return (579)
+    minValue ({1, 3, 1})  ==>  (13)
+    minValue({5, 7, 5, 9, 7})  ==>  (579)
      */
+
     public static int minValue(int[] values){
 
-        return IntStream.of(values).distinct().sorted().reduce('0', Integer::sum);
+//        return Integer.parseInt(Arrays.stream(values)
+//                .distinct()
+//                .sorted()
+//                .mapToObj(String::valueOf)
+//                .reduce("", (a,b) -> a + b));
 
+        return Arrays.stream(values)
+                .distinct()
+                .sorted()
+                .reduce(0, (a, b) -> 10 * a + b);
     }
-
-
 
 }
