@@ -297,6 +297,42 @@ public class StringAlgorithms {
 //    }
 
 
+
+    /*  ************    ************    *************
+
+    make as few changes as possible.
+    if the string contains equal number of uppercase and lowercase letters, convert the string to lowercase.
+    solve("coDe") = "code". Lowercase characters > uppercase. Change only the "D" to lowercase.
+    solve("CODe") = "CODE". Uppercase characters > lowercase. Change only the "e" to uppercase.
+    solve("coDE") = "code". Upper == lowercase. Change all to lowercase.
+     */
+    public static String solve(final String str) {
+//        char[] ch = str.toCharArray();
+//        int count = 0;
+//        for (int i = 0; i < ch.length; i++) {
+//            if ((int)ch[i] > 96 && (int)ch[i] < 123) {
+//                count++;
+//                System.out.println(ch[i]);
+//            }
+//        }
+//        return (double)str.length()/2 <= count ? str.toLowerCase() : str.toUpperCase();
+
+        return str.chars().filter(Character::isLowerCase).count() < str.chars().filter(Character::isUpperCase).count()
+                ? str.toUpperCase()
+                : str.toLowerCase();
+    }
+
+
+    /*
+    recursive reverse string
+     */
+    public static String reverse(String str) {
+        return str.length() <= 1
+                ? str
+                : str.substring(str.length()-1) + reverse(str.substring(0,str.length()-1));
+    }
+
+
 }
 
 
