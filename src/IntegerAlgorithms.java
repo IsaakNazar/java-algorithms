@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class IntegerAlgorithms {
 
@@ -348,6 +349,32 @@ public class IntegerAlgorithms {
                 .distinct()
                 .sorted()
                 .reduce(0, (a, b) -> 10 * a + b);
+    }
+
+    /*
+    Flatten 2 dim array and sort
+     */
+    public static int[] flattenAndSort(int[][] array) {
+        IntStream stream = Stream.of(array).flatMapToInt(Arrays::stream).sorted();
+        return stream.toArray();
+    }
+
+
+    /*
+    Given a number, write a function to output its reverse digits. (e.g. given 123 the answer is 321)
+
+    Numbers should preserve their sign; i.e. a negative number should still be negative when reversed.
+
+     123 ->  321
+    -456 -> -654
+    1000 ->    1
+     */
+
+    public static int reverse(int number) {
+//        int reversed = Integer.parseInt(StringAlgorithms.reverse(String.valueOf(Math.abs(number))));
+//        return number > 0 ? reversed : -reversed;
+
+        return number < 0 ? -reverse(-number) : Integer.parseInt(new StringBuilder().append(number).reverse().toString());
     }
 
 }
